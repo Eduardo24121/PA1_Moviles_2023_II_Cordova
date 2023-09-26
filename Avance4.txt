@@ -1,0 +1,1 @@
+Ya comenze con la logica del movimiento del personaje, salto y mantener salto en moviles

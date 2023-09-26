@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int AmountToPool = 10;
+    public GameObject GameObjectPool;
+    private List<GameObject> poolObjects = new List<GameObject>();
     void Start()
     {
-        
+        CreatePool();
     }
 
-    // Update is called once per frame
-    void Update()
+    void CreatePool()
     {
-        
+        for(int i = 0; i < AmountToPool; i++)
+        {
+            var tempGo = Instantiate(GameObjectPool);
+            tempGo.SetActive(false);
+            poolObjects.Add(tempGo);
+        }
+    }
+    public GameObject GetGameObjectFromPool() 
+    {
+        for (int i = 0; i < AmountToPool; i++)
+        {
+            if(!poolObjects[i].activeInHierarchy)
+            {
+                return poolObjects[i];
+            }
+        }
+        Debug.Log("Error");
+        return null;
     }
 }

@@ -1,0 +1,1 @@
+Intente crear el object pool para nuves, pero no me salio, dejo en evidencia que lo intente , ahora hago puntaje y colecionable

@@ -1,0 +1,1 @@
+Cree el fondo infinito y el salto ya funciona con el touch

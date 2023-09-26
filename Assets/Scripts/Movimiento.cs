@@ -6,6 +6,8 @@ public class Movimiento : MonoBehaviour
 {
     public Rigidbody2D RB2D;
     public float JumpForce;
+    private float HoldForce = 3.5f;
+    private bool isJumping = false;
 
     void Start()
     {
@@ -14,9 +16,25 @@ public class Movimiento : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        
+        if (Input.touchCount > 0)
         {
-            RB2D.velocity = Vector2.up * JumpForce;
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                isJumping = true;
+                RB2D.velocity = Vector2.up * JumpForce;
+            }
+            else if (touch.phase == TouchPhase.Stationary && isJumping)
+            {
+
+                RB2D.velocity = Vector2.up * HoldForce;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                isJumping = false;
+            }
         }
     }
 }
